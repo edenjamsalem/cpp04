@@ -1,9 +1,14 @@
-NAME = megaphone
+NAME = abstractClass 
 
 CC = c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 
-SRCS = megaphone.cpp
+SRCDIR = ./srcs
+SRCS =	$(SRCDIR)/main.cpp \
+		$(SRCDIR)/AAnimal.cpp \
+		$(SRCDIR)/Dog.cpp \
+		$(SRCDIR)/Cat.cpp \
+		$(SRCDIR)/Brain.cpp
 
 OBJDIR = ./build
 OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
@@ -11,6 +16,7 @@ OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
 all: $(OBJDIR) $(NAME)
 
 $(OBJDIR)/%.o: %.cpp
+	mkdir -p $(@D)
 	$(CC) $(CPPFLAGS) -c $< -o $@
 
 $(NAME): $(OBJDIR) $(OBJS)

@@ -1,9 +1,10 @@
-#include "./Cat.hpp"
-#include "./Animal.hpp"
+#include "../includes/Animal.hpp"
+#include "../includes/Cat.hpp"
 
 Cat::Cat(): Animal("Cat")
 {
 	std::cout << "Cat created with default constructor!\n";
+	_brain = new Brain();
 }
 
 Cat::Cat(const Cat& other) : Animal(other)
@@ -21,6 +22,7 @@ Cat& Cat::operator=(const Cat& other)
 
 Cat::~Cat()
 {
+	delete _brain;
 	std::cout << "Cat destroyed\n";
 }
 

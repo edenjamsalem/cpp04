@@ -3,10 +3,13 @@ NAME = polymorphism
 CC = c++
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 
-SRCS =	main.cpp \
-		Animal.cpp \
-		Dog.cpp \
-		Cat.cpp
+SRCDIR = ./srcs
+SRCS =	$(SRCDIR)/main.cpp \
+		$(SRCDIR)/Animal.cpp \
+		$(SRCDIR)/Dog.cpp \
+		$(SRCDIR)/Cat.cpp \
+		$(SRCDIR)/WrongAnimal.cpp \
+		$(SRCDIR)/WrongCat.cpp
 
 OBJDIR = ./build
 OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
@@ -14,6 +17,7 @@ OBJS = $(SRCS:%.cpp=$(OBJDIR)/%.o)
 all: $(OBJDIR) $(NAME)
 
 $(OBJDIR)/%.o: %.cpp
+	mkdir -p $(@D)
 	$(CC) $(CPPFLAGS) -c $< -o $@
 
 $(NAME): $(OBJDIR) $(OBJS)
